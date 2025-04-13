@@ -1,19 +1,41 @@
-// src/components/Navbar.tsx
-import Link from "next/link";
+"use client";
+import { Leaf } from "lucide-react";
 
 export default function Navbar() {
   return (
-    <nav className="flex justify-between items-center p-6 text-white">
-      <div className="text-3xl font-bold">workhu</div>
-      <div className="flex gap-8 text-lg">
-        <Link href="/">Home</Link>
-        <Link href="/">Featured</Link>
-        <Link href="/">How it Works</Link>
-        <Link href="/">Categories</Link>
+    <nav className="fixed top-0 left-0 w-full z-50 px-6 py-4 bg-transparent">
+      <div className="max-w-6xl mx-auto flex items-center justify-between">
+        <div className="flex items-center space-x-2">
+          <Leaf className="h-6 w-6 text-white" />
+          <span className="text-white text-xl font-semibold">AgriMitra</span>
+        </div>
+        <div className="hidden md:flex items-center space-x-8">
+          <a
+            href="#"
+            className="text-white hover:text-green-200 transition font-semibold"
+          >
+            Services
+          </a>
+          <a
+            href="#"
+            className="text-white hover:text-green-200 transition font-semibold"
+          >
+            Inspirations
+          </a>
+          <a
+            href="#"
+            className="text-white hover:text-green-200 transition font-semibold"
+          >
+            About AgriMitra
+          </a>
+          <a
+            href="#"
+            className="text-white hover:text-green-200 transition font-semibold"
+          >
+            Contact
+          </a>
+        </div>
       </div>
-      <button className="bg-white text-black px-5 py-2 rounded-full">
-        Start Free-trial
-      </button>
     </nav>
   );
 }
