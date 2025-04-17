@@ -1,0 +1,17 @@
+[
+  {
+    "crop": "Wheat",
+    "disease": "Rust",
+    "pesticide": "Propiconazole 25% EC"
+  },
+  {
+    "crop": "Rice",
+    "disease": "Leaf Blight",
+    "pesticide": "Streptomycin Sulfate"
+  },
+  {
+    "crop": "Cotton",
+    "disease": "Bollworm",
+    "pesticide": "Chlorpyrifos 20% EC"
+  }
+]
