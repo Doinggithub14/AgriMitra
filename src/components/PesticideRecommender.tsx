@@ -43,7 +43,10 @@ export default function PesticideRecommender() {
     );
   };
 
-  return (
+  return (<div>
+    <h2 className="text-2xl text-green-600">
+            Pesticide Recommender
+          </h2>
     <div className="bg-white p-6 rounded-2xl shadow-lg max-w-xl mx-auto mt-10">
       <h2 className="text-2xl font-bold mb-4 text-green-700">
         Pesticide Recommender
@@ -78,6 +81,7 @@ export default function PesticideRecommender() {
           <p className="mt-1">{result}</p>
         </div>
       )}
+    </div>
     </div>
   );
 }
