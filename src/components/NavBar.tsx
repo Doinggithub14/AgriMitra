@@ -27,10 +27,12 @@ export default function Navbar() {
   const showSolid = isScrolled || !isHome;
 
   const links = [
-    { label: "Pest Recommendation", href: "/pestrecommendation" },
-    { label: "Expert Consultation", href: "/farmer-forum" },
+    { label: "Home", href: "/" },
+    { label: "Pesticide Recommendation", href: "/pesticide-recommender" },
+
     { label: "Crop Market", href: "#crop-market" },
-    { label: "Organic Farming", href: "/expertconsultation" },
+    { label: "Organic Farming", href: "#sustainable-farming" },
+    { label: "Farmer Forum", href: "/farmer-forum" },
   ];
 
   return (

@@ -1,6 +1,9 @@
 "use client";
 
 import { Button } from "@/components/ui/Button";
+import image from "next/image";
+import Image from "next/image";
+import Link from "next/link";
 
 export default function HeroSection() {
   return (
@@ -9,8 +12,7 @@ export default function HeroSection() {
       <div
         className="absolute inset-0 z-0"
         style={{
-          backgroundImage:
-            "url('https://png.pngtree.com/thumb_back/fh260/background/20230519/pngtree-picture-of-green-leaves-in-a-dark-room-image_2665488.jpg')",
+          backgroundImage: "url('/images/b.jpeg')",
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
@@ -34,9 +36,11 @@ export default function HeroSection() {
                 and find the right pesticides to ensure healthy and thriving
                 yields.
               </p>
-              <Button className="bg-white text-green-800 hover:bg-green-50 transition-colors px-8 py-2 text-lg">
-                Explore
-              </Button>
+              <Link href="/explore-crops">
+                <Button className="bg-white text-green-800 hover:bg-green-50 transition-colors px-8 py-2 text-lg">
+                  Explore
+                </Button>
+              </Link>
             </div>
           </div>
         </div>
