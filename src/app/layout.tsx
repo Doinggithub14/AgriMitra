@@ -14,10 +14,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>
-        {/* Navbar is now fixed at the top */}
+      <body className="bg-white">
         <Navbar />
-        <main className="pt-20">{children}</main>
+        <main className="min-h-screen bg-white mt-16">{children}</main>
       </body>
     </html>
   );

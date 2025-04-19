@@ -5,6 +5,8 @@ import PesticideRecommender from "@/components/PesticideRecommender";
 import MandiPrices from '@/components/MandiPrices';
 import FarmerForum from '@/components/FarmerForum';
 import { useState } from "react";
+import Link from "next/link";
+import { Leaf, Search, Crop, TrendingUp, Calendar } from "lucide-react";
 
 export default function HomePage() {
   const [query, setQuery] = useState("");
@@ -33,36 +35,72 @@ export default function HomePage() {
     }
   };
 
+  const cropOptions = [
+    {
+      icon: <Search className="h-8 w-8 text-emerald-600" />,
+      title: "Explore Crops",
+      description: "Discover a wide variety of crops suitable for your region and climate",
+    },
+    {
+      icon: <Crop className="h-8 w-8 text-emerald-600" />,
+      title: "Select Your Crop",
+      description: "Choose the perfect crop based on your soil type and farming conditions",
+    },
+    {
+      icon: <TrendingUp className="h-8 w-8 text-emerald-600" />,
+      title: "Market Analysis",
+      description: "Get insights into market prices and demand for different crops",
+    },
+    {
+      icon: <Calendar className="h-8 w-8 text-emerald-600" />,
+      title: "Seasonal Guide",
+      description: "Learn about the best time to plant and harvest various crops",
+    },
+  ];
+
   return (
     <main>
-      {/* HeroSection now starts from the very top and covers the Navbar */}
-      <section className="h-screen flex items-center justify-center bg-gray-100 relative -mt-20">
+      <section className="relative">
         <HeroSection />
       </section>
 
-      {/* <div className="max-w-xl mx-auto p-4">
-        <h1 className="text-2xl font-bold mb-4">
-          Pesticide Recommender for Farmers
-        </h1>
+      {/* Crop Exploration Section */}
+      <section className="py-16 bg-white">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">Explore Your Farming Options</h2>
+            <p className="text-xl text-gray-600">Make informed decisions about your crops with our comprehensive tools</p>
+          </div>
 
-        <div className="mt-20 mb-4">
-          <input
-            type="text"
-            placeholder="Search crop..."
-            onChange={(e) => setQuery(e.target.value)}
-            className="border p-2 mr-2"
-          />
-          <button
-            onClick={handleSearch}
-            className="bg-blue-500 text-white px-4 py-2 rounded"
-          >
-            Search
-          </button>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+            {cropOptions.map((option, index) => (
+              <Link
+                key={index}
+                href={`/${option.title.toLowerCase().replace(/\s+/g, '-')}`}
+                className="bg-gray-50 rounded-xl p-6 hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1"
+              >
+                <div className="flex flex-col items-center text-center">
+                  <div className="mb-4 bg-emerald-50 p-3 rounded-full">
+                    {option.icon}
+                  </div>
+                  <h3 className="text-xl font-semibold text-gray-900 mb-2">{option.title}</h3>
+                  <p className="text-gray-600">{option.description}</p>
+                </div>
+              </Link>
+            ))}
+          </div>
+
+          <div className="text-center">
+            <Link
+              href="/crops"
+              className="inline-flex items-center px-8 py-3 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700 transition-all duration-300 transform hover:scale-105"
+            >
+              <Leaf className="h-5 w-5 mr-2" />
+              View Crop Recommendations
+            </Link>
+          </div>
         </div>
-        {loading && <p>Loading...</p>}
-
-        {result && <pre>{JSON.stringify(result, null, 2)}</pre>}
-      </div> */}
+      </section>
 
       <div className="max-w-4xl mx-auto p-4 mt-10">
         <PesticideRecommender />
@@ -72,7 +110,7 @@ export default function HomePage() {
         <MandiPrices />
       </div>
 
-      <div className="max-w-4xl mx-auto p-4 mt-10">
+      <div className="max-w-4xl mx-auto p-4 mt-10 mb-20">
         <FarmerForum />
       </div>
     </main>
