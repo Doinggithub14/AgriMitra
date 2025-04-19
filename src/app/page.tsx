@@ -3,7 +3,9 @@
 import HeroSection from "@/components/HeroSection";
 import PesticideRecommender from "@/components/PesticideRecommender";
 import MandiPrices from '@/components/MandiPrices';
-import FarmerForum from '@/components/FarmerForum';
+
+import SustainableFarming from '@/components/SustainableFarming';
+import FAQ from '@/components/FAQ';
 import { useState } from "react";
 import Link from "next/link";
 import { Leaf, Search, Crop, TrendingUp, Calendar } from "lucide-react";
@@ -110,8 +112,13 @@ export default function HomePage() {
         <MandiPrices />
       </div>
 
+      <div className="max-w-4xl mx-auto p-4 mt-10 mb-20"></div>
+        <SustainableFarming />
+
+      
+
       <div className="max-w-4xl mx-auto p-4 mt-10 mb-20">
-        <FarmerForum />
+        <FAQ />
       </div>
     </main>
   );

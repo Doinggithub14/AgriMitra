@@ -2,16 +2,92 @@
   {
     "crop": "Wheat",
     "disease": "Rust",
-    "pesticide": "Propiconazole 25% EC"
+    "pesticide": "Propiconazole 25% EC",
+    "amount": "₹1,200/kg",
+    "dosage": "1 ml per liter of water"
   },
   {
     "crop": "Rice",
     "disease": "Leaf Blight",
-    "pesticide": "Streptomycin Sulfate"
+    "pesticide": "Streptomycin Sulfate",
+    "amount": "₹1,200/kg",
+    "dosage": "2 g per liter of water"
   },
   {
     "crop": "Cotton",
     "disease": "Bollworm",
-    "pesticide": "Chlorpyrifos 20% EC"
+    "pesticide": "Chlorpyrifos 20% EC",
+    "amount": "₹1,200/kg",
+    "dosage": "2.5 ml per liter of water"
+  },
+  {
+    "crop": "Tomato",
+    "disease": "Early Blight",
+    "pesticide": "Mancozeb 75% WP",
+    "amount": "₹850/kg",
+    "dosage": "2 g per liter of water"
+  },
+  {
+    "crop": "Potato",
+    "disease": "Late Blight",
+    "pesticide": "Metalaxyl + Mancozeb",
+    "amount": "₹950/kg",
+    "dosage": "2.5 g per liter of water"
+  },
+  {
+    "crop": "Maize",
+    "disease": "Downy Mildew",
+    "pesticide": "Metalaxyl 35% WS",
+    "amount": "₹1,100/kg",
+    "dosage": "3 g per kg of seeds"
+  },
+  {
+    "crop": "Soybean",
+    "disease": "Rust",
+    "pesticide": "Hexaconazole 5% SC",
+    "amount": "₹1,050/kg",
+    "dosage": "1 ml per liter of water"
+  },
+  {
+    "crop": "Chili",
+    "disease": "Powdery Mildew",
+    "pesticide": "Sulphur 80% WP",
+    "amount": "₹700/kg",
+    "dosage": "3 g per liter of water"
+  },
+  {
+    "crop": "Banana",
+    "disease": "Sigatoka Leaf Spot",
+    "pesticide": "Carbendazim 50% WP",
+    "amount": "₹900/kg",
+    "dosage": "1 g per liter of water"
+  },
+  {
+    "crop": "Sugarcane",
+    "disease": "Red Rot",
+    "pesticide": "Tricyclazole 75% WP",
+    "amount": "₹1,300/kg",
+    "dosage": "2 g per liter of water"
+  },
+  {
+    "crop": "Groundnut",
+    "disease": "Tikka Leaf Spot",
+    "pesticide": "Chlorothalonil 75% WP",
+    "amount": "₹950/kg",
+    "dosage": "2 g per liter of water"
+  },
+  {
+    "crop": "Mango",
+    "disease": "Anthracnose",
+    "pesticide": "Copper Oxychloride 50% WP",
+    "amount": "₹1,000/kg",
+    "dosage": "3 g per liter of water"
+  },
+  {
+    "crop": "Grapes",
+    "disease": "Downy Mildew",
+    "pesticide": "Dimethomorph 50% WP",
+    "amount": "₹1,400/kg",
+    "dosage": "2 g per liter of water"
   }
 ]
