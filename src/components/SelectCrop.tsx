@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
-import { Search, Filter, X, ArrowLeft, ArrowRight } from 'lucide-react';
+import { ArrowLeft, ArrowRight, Crop } from 'lucide-react';
 import { crops, categories, seasons, waterRequirements, sunlightOptions, CropInfo } from '@/data/crops';
 
 export default function SelectCrop() {
@@ -324,7 +324,7 @@ export default function SelectCrop() {
                   onClick={handleReset}
                   className="text-emerald-600 hover:text-emerald-700 flex items-center gap-2"
                 >
-                  <X size={20} />
+                  <Crop size={20} />
                   Reset Filters
                 </button>
               </div>
@@ -374,7 +374,7 @@ export default function SelectCrop() {
                       onClick={() => setShowDetails(false)}
                       className="text-gray-500 hover:text-gray-700"
                     >
-                      <X size={24} />
+                      <Crop size={24} />
                     </button>
                   </div>
 

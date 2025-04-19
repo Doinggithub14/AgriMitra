@@ -1,9 +1,10 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { FaUser, FaLeaf, FaSearch, FaComment, FaThumbsUp, FaShare, FaTimes, FaEye } from 'react-icons/fa';
+import { FaUser, FaLeaf, FaSearch, FaComment, FaThumbsUp, FaTimes, FaEye } from 'react-icons/fa';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Poppins, Inter } from 'next/font/google';
+import Image from 'next/image';
 
 const poppins = Poppins({ 
   weight: ['400', '600', '700'],
@@ -543,11 +544,13 @@ const FarmerForum = () => {
                         {answer.attachments && answer.attachments.length > 0 && (
                           <div className="mt-4 grid grid-cols-2 gap-4">
                             {answer.attachments.map((attachment, index) => (
-                              <img
+                              <Image
                                 key={index}
                                 src={attachment}
                                 alt="Attachment"
                                 className="rounded-lg w-full h-48 object-cover"
+                                width={400}
+                                height={200}
                               />
                             ))}
                           </div>

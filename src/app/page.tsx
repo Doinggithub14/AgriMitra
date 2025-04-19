@@ -1,42 +1,14 @@
 "use client";
 
 import HeroSection from "@/components/HeroSection";
-import PesticideRecommender from "@/components/PesticideRecommender";
+import Image from "next/image";
 import MandiPrices from '@/components/MandiPrices';
-
 import SustainableFarming from '@/components/SustainableFarming';
 import FAQ from '@/components/FAQ';
-import { useState } from "react";
 import Link from "next/link";
 import { Leaf, Search, Crop, TrendingUp, Calendar } from "lucide-react";
 
 export default function HomePage() {
-  const [query, setQuery] = useState("");
-  const [result, setResult] = useState<object | null>(null);
-  const [loading, setLoading] = useState(false);
-
-  const handleSearch = async () => {
-    if (!query) return;
-
-    setLoading(true);
-    try {
-      const res = await fetch(
-        `https://perenual.com/api/species-list?key=${process.env.NEXT_PUBLIC_PERENUAL_API_KEY}&q=${query}`
-      );
-
-      if (!res.ok) {
-        throw new Error("Failed to fetch data");
-      }
-
-      const data = await res.json();
-      setResult(data);
-    } catch (error) {
-      console.error("Error fetching data", error);
-    } finally {
-      setLoading(false);
-    }
-  };
-
   const cropOptions = [
     {
       icon: <Search className="h-8 w-8 text-emerald-600" />,
@@ -69,10 +41,13 @@ export default function HomePage() {
       {/* Crop Exploration Section */}
       <section className="py-16 relative">
         <div className="absolute inset-0 z-0">
-          <img 
+          <Image 
             src="/images/1.jpg" 
             alt="Crop Exploration Background" 
             className="w-full h-full object-cover"
+            width={1920}
+            height={1080}
+            priority
           />
         </div>
         <div className="max-w-7xl mx-auto px-4 relative z-10">
@@ -160,7 +135,7 @@ export default function HomePage() {
             <div>
               <h3 className="text-xl font-semibold mb-4">Quick Links</h3>
               <ul className="space-y-2">
-                <li><a href="/" className="text-green-100 hover:text-white transition-colors">Home</a></li>
+                <li><Link href="/" className="text-green-100 hover:text-white transition-colors">Home</Link></li>
                 <li><a href="#crop-market" className="text-green-100 hover:text-white transition-colors">Crop Market</a></li>
                 <li><a href="#sustainable-farming" className="text-green-100 hover:text-white transition-colors">Organic Farming</a></li>
                 <li><a href="/farmer-forum" className="text-green-100 hover:text-white transition-colors">Farmer Forum</a></li>

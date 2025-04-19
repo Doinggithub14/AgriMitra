@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { FaArrowUp, FaArrowDown, FaRupeeSign, FaLeaf, FaSearch, FaSort, FaSortUp, FaSortDown, FaFilter, FaArrowLeft, FaArrowRight, FaTimesCircle, FaChevronDown, FaTimes } from 'react-icons/fa';
+import { FaArrowUp, FaArrowDown, FaRupeeSign, FaSearch, FaSort, FaSortUp, FaSortDown, FaFilter, FaChevronDown, FaTimes } from 'react-icons/fa';
 import { motion } from 'framer-motion';
 import { Poppins, Inter, Hind } from 'next/font/google';
 
@@ -180,7 +180,7 @@ const MandiPrices = () => {
         
         setPrices(mockData);
         setLoading(false);
-      } catch (err) {
+      } catch {
         setError("Failed to fetch mandi prices. Please try again later.");
         setLoading(false);
       }
@@ -284,7 +284,7 @@ const MandiPrices = () => {
                 className="absolute right-4 top-1/2 transform -translate-y-1/2 text-green-600 hover:text-green-500
                 transition-colors duration-200"
               >
-                <FaTimesCircle className="text-lg"/>
+                <FaTimes className="text-lg"/>
               </button>
             )}
           </div>
