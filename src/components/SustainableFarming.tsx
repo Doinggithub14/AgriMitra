@@ -2,15 +2,15 @@
 
 import { motion, AnimatePresence } from "framer-motion";
 import {
-  FaLeaf,
+  FaSeedling,
   FaWater,
   FaRecycle,
-  FaSeedling,
   FaBug,
+  FaLeaf,
   FaTree,
-  FaTractor,
-  FaDumpster,
   FaCloudSun,
+  FaDumpster,
+  FaTractor,
 } from "react-icons/fa";
 import { Poppins, Hind } from "next/font/google";
 import { useState } from "react";
@@ -224,7 +224,7 @@ const techniques = [
 ];
 
 const SustainableFarming: React.FC = () => {
-  const [isVisible] = useState(false);
+  const [isVisible] = useState(true);
 
   const containerVariants = {
     hidden: { opacity: 0 },

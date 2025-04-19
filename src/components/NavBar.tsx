@@ -30,8 +30,8 @@ export default function Navbar() {
     { label: "Home", href: "/" },
     { label: "Pesticide Recommendation", href: "/pesticide-recommender" },
 
-    { label: "Crop Market", href: "#crop-market" },
-    { label: "Organic Farming", href: "#sustainable-farming" },
+    { label: "Crop Market", href: "/#crop-market" },
+    { label: "Organic Farming", href: "/#sustainable-farming" },
     { label: "Farmer Forum", href: "/farmer-forum" },
   ];
 

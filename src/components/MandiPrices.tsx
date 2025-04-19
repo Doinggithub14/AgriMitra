@@ -1,25 +1,36 @@
-'use client';
+"use client";
 
-import { useState, useEffect } from 'react';
-import { FaArrowUp, FaArrowDown, FaRupeeSign, FaSearch, FaSort, FaSortUp, FaSortDown, FaFilter, FaChevronDown, FaTimes } from 'react-icons/fa';
-import { motion } from 'framer-motion';
-import { Poppins, Inter, Hind } from 'next/font/google';
+import { useState, useEffect } from "react";
+import {
+  FaArrowUp,
+  FaArrowDown,
+  FaRupeeSign,
+  FaSearch,
+  FaSort,
+  FaSortUp,
+  FaSortDown,
+  FaFilter,
+  FaChevronDown,
+  FaTimes,
+} from "react-icons/fa";
+import { motion } from "framer-motion";
+import { Poppins, Inter, Hind } from "next/font/google";
 
-const poppins = Poppins({ 
-  weight: ['400', '500', '600', '700'],
-  subsets: ['latin'],
-  display: 'swap',
+const poppins = Poppins({
+  weight: ["400", "500", "600", "700"],
+  subsets: ["latin"],
+  display: "swap",
 });
 
-const inter = Inter({ 
-  subsets: ['latin'],
-  display: 'swap',
+const inter = Inter({
+  subsets: ["latin"],
+  display: "swap",
 });
 
 const hind = Hind({
-  weight: ['700'],
-  subsets: ['devanagari'],
-  display: 'swap',
+  weight: ["700"],
+  subsets: ["devanagari"],
+  display: "swap",
 });
 
 interface MandiPrice {
@@ -38,17 +49,17 @@ interface MandiPrice {
   id: string;
 }
 
-type SortField = 'cropName' | 'price' | 'priceChange' | 'weeklyChange';
-type SortOrder = 'asc' | 'desc';
+type SortField = "cropName" | "price" | "priceChange" | "weeklyChange";
+type SortOrder = "asc" | "desc";
 
 const MandiPrices = () => {
   const [prices, setPrices] = useState<MandiPrice[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [searchQuery, setSearchQuery] = useState('');
-  const [sortField, setSortField] = useState<SortField>('cropName');
-  const [sortOrder, setSortOrder] = useState<SortOrder>('asc');
-  const [selectedCategory, setSelectedCategory] = useState<string>('all');
+  const [searchQuery, setSearchQuery] = useState("");
+  const [sortField, setSortField] = useState<SortField>("cropName");
+  const [sortOrder, setSortOrder] = useState<SortOrder>("asc");
+  const [selectedCategory, setSelectedCategory] = useState<string>("all");
 
   useEffect(() => {
     // TODO: Replace with actual API call
@@ -69,7 +80,7 @@ const MandiPrices = () => {
             marketLocation: "Delhi",
             volume: 5000,
             category: "Cereals",
-            id: "1"
+            id: "1",
           },
           {
             cropName: "चावल | Rice",
@@ -84,7 +95,7 @@ const MandiPrices = () => {
             marketLocation: "Delhi",
             volume: 3500,
             category: "Cereals",
-            id: "2"
+            id: "2",
           },
           {
             cropName: "टमाटर | Tomato",
@@ -99,7 +110,7 @@ const MandiPrices = () => {
             marketLocation: "Delhi",
             volume: 1800,
             category: "Vegetables",
-            id: "3"
+            id: "3",
           },
           {
             cropName: "प्याज | Onion",
@@ -114,7 +125,7 @@ const MandiPrices = () => {
             marketLocation: "Delhi",
             volume: 2200,
             category: "Vegetables",
-            id: "4"
+            id: "4",
           },
           {
             cropName: "आलू | Potato",
@@ -129,7 +140,7 @@ const MandiPrices = () => {
             marketLocation: "Delhi",
             volume: 2800,
             category: "Vegetables",
-            id: "5"
+            id: "5",
           },
           {
             cropName: "गन्ना | Sugarcane",
@@ -144,7 +155,7 @@ const MandiPrices = () => {
             marketLocation: "Delhi",
             volume: 4500,
             category: "Cash Crops",
-            id: "6"
+            id: "6",
           },
           {
             cropName: "कपास | Cotton",
@@ -159,7 +170,7 @@ const MandiPrices = () => {
             marketLocation: "Delhi",
             volume: 1200,
             category: "Cash Crops",
-            id: "7"
+            id: "7",
           },
           {
             cropName: "मक्का | Maize",
@@ -174,10 +185,10 @@ const MandiPrices = () => {
             marketLocation: "Delhi",
             volume: 3200,
             category: "Cereals",
-            id: "8"
-          }
+            id: "8",
+          },
         ];
-        
+
         setPrices(mockData);
         setLoading(false);
       } catch {
@@ -191,39 +202,42 @@ const MandiPrices = () => {
 
   const handleSort = (field: SortField) => {
     if (sortField === field) {
-      setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc');
+      setSortOrder(sortOrder === "asc" ? "desc" : "asc");
     } else {
       setSortField(field);
-      setSortOrder('asc');
+      setSortOrder("asc");
     }
   };
 
   const getSortIcon = (field: SortField) => {
     if (sortField !== field) return <FaSort className="ml-2 text-gray-400" />;
-    return sortOrder === 'asc' ? 
-      <FaSortUp className="ml-2 text-green-800" /> : 
-      <FaSortDown className="ml-2 text-green-800" />;
+    return sortOrder === "asc" ? (
+      <FaSortUp className="ml-2 text-green-800" />
+    ) : (
+      <FaSortDown className="ml-2 text-green-800" />
+    );
   };
 
-  const categories = ['all', ...new Set(prices.map(price => price.category))];
+  const categories = ["all", ...new Set(prices.map((price) => price.category))];
 
   const filteredPrices = prices
-    .filter(price => 
-      (selectedCategory === 'all' || price.category === selectedCategory) &&
-      (price.cropName.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      price.cropNameHindi.includes(searchQuery) ||
-      price.mandiName.toLowerCase().includes(searchQuery.toLowerCase()))
+    .filter(
+      (price) =>
+        (selectedCategory === "all" || price.category === selectedCategory) &&
+        (price.cropName.toLowerCase().includes(searchQuery.toLowerCase()) ||
+          price.cropNameHindi.includes(searchQuery) ||
+          price.mandiName.toLowerCase().includes(searchQuery.toLowerCase()))
     )
     .sort((a, b) => {
-      const multiplier = sortOrder === 'asc' ? 1 : -1;
+      const multiplier = sortOrder === "asc" ? 1 : -1;
       switch (sortField) {
-        case 'cropName':
+        case "cropName":
           return multiplier * a.cropName.localeCompare(b.cropName);
-        case 'price':
+        case "price":
           return multiplier * (a.price - b.price);
-        case 'priceChange':
+        case "priceChange":
           return multiplier * (a.priceChange - b.priceChange);
-        case 'weeklyChange':
+        case "weeklyChange":
           return multiplier * (a.weeklyChange - b.weeklyChange);
         default:
           return 0;
@@ -233,31 +247,36 @@ const MandiPrices = () => {
   if (loading) {
     return (
       <div className="flex justify-center items-center h-64">
-        <div className="text-2xl text-green-800 animate-pulse">Loading prices...</div>
+        <div className="text-2xl text-green-800 animate-pulse">
+          Loading prices...
+        </div>
       </div>
     );
   }
 
   if (error) {
-    return (
-      <div className="text-red-600 text-center p-4">
-        {error}
-      </div>
-    );
+    return <div className="text-red-600 text-center p-4">{error}</div>;
   }
 
   return (
-    <div id="crop-market" className={`${poppins.className} ${inter.className} ${hind.className} w-full px-2 py-8`}>
+    <section
+      id="crop-market"
+      className={`${poppins.className} ${inter.className} ${hind.className} w-full px-2 py-8`}
+    >
       <div className="text-center mb-8">
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          <h2 className={`text-5xl font-bold text-green-900 mb-5 ${hind.className}`}>
+          <h2
+            className={`text-5xl font-bold text-green-900 mb-5 ${hind.className}`}
+          >
             वर्तमान कृषि बाज़ार मूल्य
           </h2>
-          <h3 className={`text-3xl text-green-800 pb-5 ${poppins.className} font-semibold`}>
+          <h3
+            className={`text-3xl text-green-800 pb-5 ${poppins.className} font-semibold`}
+          >
             Crop Market Price List
           </h3>
         </motion.div>
@@ -276,36 +295,42 @@ const MandiPrices = () => {
               focus:border-transparent bg-white/95 backdrop-blur-sm text-green-900 placeholder-green-700 
               transition-all duration-300 ease-in-out shadow-sm hover:shadow-md"
             />
-            <FaSearch className="absolute left-4 top-1/2 transform -translate-y-1/2 text-green-700 text-lg 
-              transition-all duration-300 group-hover:text-green-700" />
+            <FaSearch
+              className="absolute left-4 top-1/2 transform -translate-y-1/2 text-green-700 text-lg 
+              transition-all duration-300 group-hover:text-green-700"
+            />
             {searchQuery && (
               <button
-                onClick={() => setSearchQuery('')}
+                onClick={() => setSearchQuery("")}
                 className="absolute right-4 top-1/2 transform -translate-y-1/2 text-green-600 hover:text-green-500
                 transition-colors duration-200"
               >
-                <FaTimes className="text-lg"/>
+                <FaTimes className="text-lg" />
               </button>
             )}
           </div>
         </div>
-        <div className="flex items-center gap-3 bg-white/95 backdrop-blur-sm rounded-2xl px-4 py-2 border-2 border-green-700 
-          shadow-sm hover:shadow-md transition-all duration-300">
+        <div
+          className="flex items-center gap-3 bg-white/95 backdrop-blur-sm rounded-2xl px-4 py-2 border-2 border-green-700 
+          shadow-sm hover:shadow-md transition-all duration-300"
+        >
           <FaFilter className="text-green-600 text-lg" />
           <select
             value={selectedCategory}
             onChange={(e) => setSelectedCategory(e.target.value)}
             className="flex-1 p-2 rounded-xl bg-transparent focus:outline-none text-green-900 cursor-pointer
             border-0 focus:ring-0 appearance-none"
-            style={{ WebkitAppearance: 'none', MozAppearance: 'none' }}
+            style={{ WebkitAppearance: "none", MozAppearance: "none" }}
           >
             {categories.map((category) => (
-              <option 
-                key={category} 
+              <option
+                key={category}
                 value={category}
                 className="bg-white text-green-900 py-2"
               >
-                {category === 'all' ? 'All Categories' : category.charAt(0).toUpperCase() + category.slice(1)}
+                {category === "all"
+                  ? "All Categories"
+                  : category.charAt(0).toUpperCase() + category.slice(1)}
               </option>
             ))}
           </select>
@@ -314,38 +339,42 @@ const MandiPrices = () => {
       </div>
 
       {/* Active Filters Display */}
-      {(searchQuery || selectedCategory !== 'all') && (
+      {(searchQuery || selectedCategory !== "all") && (
         <div className="mb-4 px-2 max-w-4xl mx-auto">
           <div className="flex flex-wrap gap-2 items-center">
             {searchQuery && (
-              <div className="inline-flex items-center gap-2 bg-green-100 text-green-800 px-3 py-1 rounded-full
-                text-sm font-medium">
+              <div
+                className="inline-flex items-center gap-2 bg-green-100 text-green-800 px-3 py-1 rounded-full
+                text-sm font-medium"
+              >
                 <span>Search: {searchQuery}</span>
                 <button
-                  onClick={() => setSearchQuery('')}
+                  onClick={() => setSearchQuery("")}
                   className="hover:text-green-900 transition-colors"
                 >
                   <FaTimes className="text-xs" />
                 </button>
               </div>
             )}
-            {selectedCategory !== 'all' && (
-              <div className="inline-flex items-center gap-2 bg-green-100 text-green-800 px-3 py-1 rounded-full
-                text-sm font-medium">
+            {selectedCategory !== "all" && (
+              <div
+                className="inline-flex items-center gap-2 bg-green-100 text-green-800 px-3 py-1 rounded-full
+                text-sm font-medium"
+              >
                 <span>Category: {selectedCategory}</span>
                 <button
-                  onClick={() => setSelectedCategory('all')}
+                  onClick={() => setSelectedCategory("all")}
                   className="hover:text-green-900 transition-colors"
                 >
                   <FaTimes className="text-xs" />
                 </button>
               </div>
             )}
-            {(searchQuery || selectedCategory !== 'all') && (
+            {(searchQuery || selectedCategory !== "all") && (
               <button
                 onClick={() => {
-                  setSearchQuery('');
-                  setSelectedCategory('all');
+                  setSearchQuery("");
+                  setSelectedCategory("all");
                 }}
                 className="text-green-600 hover:text-green-800 text-sm font-medium transition-colors"
               >
@@ -377,7 +406,10 @@ const MandiPrices = () => {
               background: #64748b;
             }
           `}</style>
-          <div className="overflow-x-auto rounded-lg shadow-lg scrollable-container" style={{ overflowX: 'scroll' }}>
+          <div
+            className="overflow-x-auto rounded-lg shadow-lg scrollable-container"
+            style={{ overflowX: "scroll" }}
+          >
             <div className="min-w-[900px] relative">
               <table className="w-full table-fixed bg-white border border-purple-200">
                 <colgroup>
@@ -398,31 +430,33 @@ const MandiPrices = () => {
                     <th className="px-3 py-4 text-center text-green-700 font-semibold text-lg border-r border-purple-200 break-words">
                       Market
                     </th>
-                    <th 
+                    <th
                       className="px-3 py-4 text-center cursor-pointer text-green-700 border-r border-purple-200 break-words"
-                      onClick={() => handleSort('price')}
+                      onClick={() => handleSort("price")}
                     >
                       <div className="flex items-center justify-center text-base whitespace-normal">
-                        Price (₹/q) {getSortIcon('price')}
+                        Price (₹/q) {getSortIcon("price")}
                       </div>
                     </th>
                     <th className="px-3 py-4 text-center text-green-700 border-r border-purple-200 break-words">
-                      <div className="text-base whitespace-normal">Price/kg (₹)</div>
-                    </th>
-                    <th 
-                      className="px-3 py-4 text-center cursor-pointer text-green-700 border-r border-purple-200 break-words"
-                      onClick={() => handleSort('priceChange')}
-                    >
-                      <div className="flex items-center justify-center text-base whitespace-normal">
-                        Daily Δ {getSortIcon('priceChange')}
+                      <div className="text-base whitespace-normal">
+                        Price/kg (₹)
                       </div>
                     </th>
-                    <th 
+                    <th
                       className="px-3 py-4 text-center cursor-pointer text-green-700 border-r border-purple-200 break-words"
-                      onClick={() => handleSort('weeklyChange')}
+                      onClick={() => handleSort("priceChange")}
                     >
                       <div className="flex items-center justify-center text-base whitespace-normal">
-                        Weekly Δ {getSortIcon('weeklyChange')}
+                        Daily Δ {getSortIcon("priceChange")}
+                      </div>
+                    </th>
+                    <th
+                      className="px-3 py-4 text-center cursor-pointer text-green-700 border-r border-purple-200 break-words"
+                      onClick={() => handleSort("weeklyChange")}
+                    >
+                      <div className="flex items-center justify-center text-base whitespace-normal">
+                        Weekly Δ {getSortIcon("weeklyChange")}
                       </div>
                     </th>
                     <th className="px-3 py-4 text-center text-green-700 border-r border-purple-200 break-words">
@@ -441,10 +475,14 @@ const MandiPrices = () => {
                     >
                       <td className="px-3 py-3 border-x border-purple-200">
                         <div className="flex flex-col items-center gap-1">
-                          <span className={`text-green-700 font-semibold text-base text-center break-words ${inter.className}`}>
-                            {price.cropName.split('|')[1].trim()}
+                          <span
+                            className={`text-green-700 font-semibold text-base text-center break-words ${inter.className}`}
+                          >
+                            {price.cropName.split("|")[1].trim()}
                           </span>
-                          <span className={`text-green-700 text-base font-medium text-center break-words ${hind.className}`}>
+                          <span
+                            className={`text-green-700 text-base font-medium text-center break-words ${hind.className}`}
+                          >
                             {price.cropNameHindi}
                           </span>
                           <span className="text-green-700 text-sm font-medium text-center break-words">
@@ -454,27 +492,43 @@ const MandiPrices = () => {
                       </td>
                       <td className="px-3 py-3 border-r border-purple-200">
                         <div className="flex flex-col items-center gap-1">
-                          <div className="font-medium text-green-900 text-base text-center w-full break-words">{price.mandiName}</div>
-                          <div className={`text-base text-green-800 text-center w-full break-words ${hind.className}`}>{price.mandiNameHindi}</div>
-                          <div className="text-sm text-green-800 text-center w-full break-words">{price.marketLocation}</div>
+                          <div className="font-medium text-green-900 text-base text-center w-full break-words">
+                            {price.mandiName}
+                          </div>
+                          <div
+                            className={`text-base text-green-800 text-center w-full break-words ${hind.className}`}
+                          >
+                            {price.mandiNameHindi}
+                          </div>
+                          <div className="text-sm text-green-800 text-center w-full break-words">
+                            {price.marketLocation}
+                          </div>
                         </div>
                       </td>
                       <td className="px-3 py-3 border-r border-purple-200">
                         <div className="flex items-center justify-center break-words">
                           <FaRupeeSign className="text-green-800 text-base flex-shrink-0" />
-                          <span className="font-bold ml-1 text-green-900 text-base">{price.price.toLocaleString()}</span>
+                          <span className="font-bold ml-1 text-green-900 text-base">
+                            {price.price.toLocaleString()}
+                          </span>
                         </div>
                       </td>
                       <td className="px-3 py-3 border-r border-purple-200">
                         <div className="flex items-center justify-center break-words">
                           <FaRupeeSign className="text-green-800 text-base flex-shrink-0" />
-                          <span className="font-bold ml-1 text-green-800 text-base">{price.pricePerKg.toLocaleString()}</span>
+                          <span className="font-bold ml-1 text-green-800 text-base">
+                            {price.pricePerKg.toLocaleString()}
+                          </span>
                         </div>
                       </td>
                       <td className="px-3 py-3 border-r border-purple-200">
-                        <div className={`flex items-center justify-center text-base break-words ${
-                          price.priceChange >= 0 ? 'text-green-800' : 'text-red-700'
-                        }`}>
+                        <div
+                          className={`flex items-center justify-center text-base break-words ${
+                            price.priceChange >= 0
+                              ? "text-green-800"
+                              : "text-red-700"
+                          }`}
+                        >
                           {price.priceChange >= 0 ? (
                             <FaArrowUp className="mr-1 text-base flex-shrink-0" />
                           ) : (
@@ -484,9 +538,13 @@ const MandiPrices = () => {
                         </div>
                       </td>
                       <td className="px-3 py-3 border-r border-purple-200">
-                        <div className={`flex items-center justify-center text-base break-words ${
-                          price.weeklyChange >= 0 ? 'text-green-800' : 'text-red-700'
-                        }`}>
+                        <div
+                          className={`flex items-center justify-center text-base break-words ${
+                            price.weeklyChange >= 0
+                              ? "text-green-800"
+                              : "text-red-700"
+                          }`}
+                        >
                           {price.weeklyChange >= 0 ? (
                             <FaArrowUp className="mr-1 text-base flex-shrink-0" />
                           ) : (
@@ -513,7 +571,7 @@ const MandiPrices = () => {
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 
