@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { motion } from "framer-motion"; // ✅ Add this
 
 interface Entry {
   crop: string;
@@ -45,10 +46,12 @@ export default function PesticideRecommender() {
 
   return (
     <div>
-      
-      <div className="bg-white p-6 rounded-2xl shadow-lg max-w-xl mx-auto mt-10">
-
-
+      <motion.div
+        className="bg-white p-6 rounded-2xl shadow-lg max-w-xl mx-auto mt-10"
+        initial={{ opacity: 0, y: 30 }}     // 👈 Start hidden and below
+        animate={{ opacity: 1, y: 0 }}      // 👈 Animate into place
+        transition={{ duration: 0.6, ease: "easeOut" }} // 👈 Smooth transition
+      >
         <input
           type="text"
           placeholder="Enter Crop (e.g., Wheat)"
@@ -92,7 +95,7 @@ export default function PesticideRecommender() {
             </div>
           )
         )}
-      </div>
+      </motion.div>
     </div>
   );
 }

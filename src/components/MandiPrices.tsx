@@ -62,10 +62,8 @@ const MandiPrices = () => {
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
 
   useEffect(() => {
-    // TODO: Replace with actual API call
     const fetchMandiPrices = async () => {
       try {
-        // Mock data for demonstration
         const mockData: MandiPrice[] = [
           {
             cropName: "गेहूं | Wheat",
@@ -270,12 +268,12 @@ const MandiPrices = () => {
           transition={{ duration: 0.5 }}
         >
           <h2
-            className={`text-5xl font-bold text-green-900 mb-5 ${hind.className}`}
+            className={`text-3xl md:text-5xl font-bold text-green-900 mb-5 ${hind.className}`}
           >
             वर्तमान कृषि बाज़ार मूल्य
           </h2>
           <h3
-            className={`text-3xl text-green-800 pb-5 ${poppins.className} font-semibold`}
+            className={`text-2xl md:text-3xl text-green-800 pb-5 ${poppins.className} font-semibold`}
           >
             Crop Market Price List
           </h3>
@@ -291,35 +289,35 @@ const MandiPrices = () => {
               placeholder="Search crops or mandis..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full p-4 pl-12 rounded-2xl border-2 border-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 
+              className="w-full p-3 md:p-4 pl-10 md:pl-12 rounded-2xl border-2 border-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 
               focus:border-transparent bg-white/95 backdrop-blur-sm text-green-900 placeholder-green-700 
-              transition-all duration-300 ease-in-out shadow-sm hover:shadow-md"
+              transition-all duration-300 ease-in-out shadow-sm hover:shadow-md text-sm md:text-base"
             />
             <FaSearch
-              className="absolute left-4 top-1/2 transform -translate-y-1/2 text-green-700 text-lg 
+              className="absolute left-3 md:left-4 top-1/2 transform -translate-y-1/2 text-green-700 text-base md:text-lg 
               transition-all duration-300 group-hover:text-green-700"
             />
             {searchQuery && (
               <button
                 onClick={() => setSearchQuery("")}
-                className="absolute right-4 top-1/2 transform -translate-y-1/2 text-green-600 hover:text-green-500
+                className="absolute right-3 md:right-4 top-1/2 transform -translate-y-1/2 text-green-600 hover:text-green-500
                 transition-colors duration-200"
               >
-                <FaTimes className="text-lg" />
+                <FaTimes className="text-sm md:text-base" />
               </button>
             )}
           </div>
         </div>
         <div
-          className="flex items-center gap-3 bg-white/95 backdrop-blur-sm rounded-2xl px-4 py-2 border-2 border-green-700 
+          className="flex items-center gap-3 bg-white/95 backdrop-blur-sm rounded-2xl px-3 md:px-4 py-2 border-2 border-green-700 
           shadow-sm hover:shadow-md transition-all duration-300"
         >
-          <FaFilter className="text-green-600 text-lg" />
+          <FaFilter className="text-green-600 text-base md:text-lg" />
           <select
             value={selectedCategory}
             onChange={(e) => setSelectedCategory(e.target.value)}
-            className="flex-1 p-2 rounded-xl bg-transparent focus:outline-none text-green-900 cursor-pointer
-            border-0 focus:ring-0 appearance-none"
+            className="flex-1 p-1 md:p-2 rounded-xl bg-transparent focus:outline-none text-green-900 cursor-pointer
+            border-0 focus:ring-0 appearance-none text-sm md:text-base"
             style={{ WebkitAppearance: "none", MozAppearance: "none" }}
           >
             {categories.map((category) => (
@@ -334,7 +332,7 @@ const MandiPrices = () => {
               </option>
             ))}
           </select>
-          <FaChevronDown className="text-green-500 text-sm pointer-events-none" />
+          <FaChevronDown className="text-green-500 text-xs md:text-sm pointer-events-none" />
         </div>
       </div>
 
@@ -344,8 +342,8 @@ const MandiPrices = () => {
           <div className="flex flex-wrap gap-2 items-center">
             {searchQuery && (
               <div
-                className="inline-flex items-center gap-2 bg-green-100 text-green-800 px-3 py-1 rounded-full
-                text-sm font-medium"
+                className="inline-flex items-center gap-2 bg-green-100 text-green-800 px-2 py-1 md:px-3 rounded-full
+                text-xs md:text-sm font-medium"
               >
                 <span>Search: {searchQuery}</span>
                 <button
@@ -358,8 +356,8 @@ const MandiPrices = () => {
             )}
             {selectedCategory !== "all" && (
               <div
-                className="inline-flex items-center gap-2 bg-green-100 text-green-800 px-3 py-1 rounded-full
-                text-sm font-medium"
+                className="inline-flex items-center gap-2 bg-green-100 text-green-800 px-2 py-1 md:px-3 rounded-full
+                text-xs md:text-sm font-medium"
               >
                 <span>Category: {selectedCategory}</span>
                 <button
@@ -376,7 +374,7 @@ const MandiPrices = () => {
                   setSearchQuery("");
                   setSelectedCategory("all");
                 }}
-                className="text-green-600 hover:text-green-800 text-sm font-medium transition-colors"
+                className="text-green-600 hover:text-green-800 text-xs md:text-sm font-medium transition-colors"
               >
                 Clear all filters
               </button>
@@ -385,8 +383,91 @@ const MandiPrices = () => {
         </div>
       )}
 
-      {/* Table */}
-      <div className="section-card rounded-2xl max-w-[1500px] mx-auto bg-white/90 backdrop-blur-sm min-h-[600px] p-3 px-2">
+      {/* Mobile View - Card List */}
+      <div className="md:hidden space-y-4 px-2">
+        {filteredPrices.map((price, index) => (
+          <div
+            key={index}
+            className="bg-white rounded-xl shadow-md p-4 border border-green-200"
+          >
+            <div className="flex justify-between items-start">
+              <div>
+                <h3 className="font-bold text-green-900 text-lg">
+                  {price.cropName.split("|")[1].trim()}
+                </h3>
+                <p className={`text-green-800 ${hind.className}`}>
+                  {price.cropNameHindi}
+                </p>
+                <p className="text-sm text-green-700">{price.category}</p>
+              </div>
+              <div className="text-right">
+                <div className="flex items-center justify-end">
+                  <FaRupeeSign className="text-green-800" />
+                  <span className="font-bold ml-1 text-lg">
+                    {price.price.toLocaleString()}
+                  </span>
+                </div>
+                <div className="text-sm text-green-700">
+                  {price.mandiName}
+                </div>
+              </div>
+            </div>
+
+            <div className="mt-3 grid grid-cols-2 gap-2">
+              <div>
+                <p className="text-sm text-green-600">Price/kg:</p>
+                <div className="flex items-center">
+                  <FaRupeeSign className="text-green-800 text-sm" />
+                  <span className="font-medium ml-1">
+                    {price.pricePerKg.toLocaleString()}
+                  </span>
+                </div>
+              </div>
+              <div>
+                <p className="text-sm text-green-600">Daily Δ:</p>
+                <div
+                  className={`flex items-center ${
+                    price.priceChange >= 0 ? "text-green-800" : "text-red-700"
+                  }`}
+                >
+                  {price.priceChange >= 0 ? (
+                    <FaArrowUp className="mr-1 text-sm" />
+                  ) : (
+                    <FaArrowDown className="mr-1 text-sm" />
+                  )}
+                  <span>{Math.abs(price.priceChange)}</span>
+                </div>
+              </div>
+              <div>
+                <p className="text-sm text-green-600">Weekly Δ:</p>
+                <div
+                  className={`flex items-center ${
+                    price.weeklyChange >= 0 ? "text-green-800" : "text-red-700"
+                  }`}
+                >
+                  {price.weeklyChange >= 0 ? (
+                    <FaArrowUp className="mr-1 text-sm" />
+                  ) : (
+                    <FaArrowDown className="mr-1 text-sm" />
+                  )}
+                  <span>{Math.abs(price.weeklyChange)}</span>
+                </div>
+              </div>
+              <div>
+                <p className="text-sm text-green-600">Volume:</p>
+                <p>{price.volume.toLocaleString()} q</p>
+              </div>
+            </div>
+
+            <div className="mt-2 text-xs text-green-600">
+              Updated: {price.lastUpdated}
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* Desktop View - Table */}
+      <div className="hidden md:block section-card rounded-2xl max-w-[1500px] mx-auto bg-white/90 backdrop-blur-sm min-h-[600px] p-3 px-2">
         <div className="w-full mx-auto">
           <style jsx>{`
             .scrollable-container::-webkit-scrollbar {
