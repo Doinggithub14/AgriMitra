@@ -51,7 +51,7 @@ export default function Navbar() {
               showSolid ? "text-green-800" : "text-white"
             }`}
           >
-            <WaveText text="AgriMitra" />
+            <WaveText text="Farmer's  Friend" />
           </span>
         </div>
 
