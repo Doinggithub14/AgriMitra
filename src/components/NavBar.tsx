@@ -7,6 +7,7 @@ import { WaveText } from "@/components/ui/wave-text";
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const pathname = usePathname();
 
   const isHome = pathname === "/";
@@ -29,7 +30,6 @@ export default function Navbar() {
   const links = [
     { label: "Home", href: "/" },
     { label: "Pesticide Recommendation", href: "/pesticide-recommender" },
-
     { label: "Crop Market", href: "/#crop-market" },
     { label: "Organic Farming", href: "/#sustainable-farming" },
     { label: "Farmer Forum", href: "/farmer-forum" },
@@ -54,6 +54,8 @@ export default function Navbar() {
             <WaveText text="AgriMitra" />
           </span>
         </div>
+
+        {/* Desktop menu */}
         <div className="hidden md:flex items-center space-x-8">
           {links.map(({ label, href }) => (
             <Link
@@ -69,7 +71,39 @@ export default function Navbar() {
             </Link>
           ))}
         </div>
+
+        {/* Mobile Hamburger Icon */}
+        <div className="md:hidden flex items-center">
+          <button
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            className={`text-2xl transition-colors ${
+              showSolid || isMenuOpen
+                ? "text-green-800 hover:text-green-600"
+                : "text-white hover:text-green-200"
+            } z-50`}
+          >
+            {isMenuOpen ? "✕" : "☰"}
+          </button>
+        </div>
       </div>
+
+      {/* Mobile Menu */}
+      {isMenuOpen && (
+        <div className="md:hidden bg-white/95 backdrop-blur-md shadow-lg absolute top-16 left-0 w-full z-40 px-6 py-4 animate-in fade-in slide-in-from-top-5">
+          <div className="flex flex-col space-y-4">
+            {links.map(({ label, href }) => (
+              <Link
+                key={label}
+                href={href}
+                className="font-semibold text-green-800 hover:text-green-600 py-2 border-b border-green-100 last:border-b-0"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                {label}
+              </Link>
+            ))}
+          </div>
+        </div>
+      )}
     </nav>
   );
 }
